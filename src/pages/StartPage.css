@@ -1,0 +1,454 @@
+/* Vintage Color Palette Start Page Styles */
+
+/* Color Variables */
+:root {
+  --cream: #FCF5E0;
+  --warm-orange: #F7AE5B;
+  --terracotta: #E09464;
+  --dusty-rose: #DE8478;
+  --mauve-pink: #C97E83;
+  --golden-brown: #B8773A;
+  --dark-chocolate: #4A1A16;
+  --warm-white: #FFF8F0;
+  --soft-shadow: rgba(74, 26, 22, 0.15);
+  --hover-shadow: rgba(74, 26, 22, 0.25);
+}
+
+@font-face {
+  font-family: 'PixelifySans';
+  src: url('/fonts/PixelifySans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelifySans';
+  src: url('/fonts/PixelifySans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelifySans';
+  src: url('/fonts/PixelifySans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PixelifySans';
+  src: url('/fonts/PixelifySans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.start-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--dusty-rose) 50%, var(--terracotta) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'PixelifySans', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Warm vintage overlay for depth */
+.start-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(252, 245, 224, 0.3) 0%, 
+    rgba(247, 174, 91, 0.1) 25%,
+    rgba(222, 132, 120, 0.2) 75%, 
+    rgba(74, 26, 22, 0.1) 100%);
+  z-index: 0;
+}
+
+/* Ensure all content appears above the overlay */
+.start-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Floating furniture animations - falling like rainfall */
+.floating {
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  filter: sepia(20%) saturate(1.2) hue-rotate(10deg);
+}
+
+@keyframes fallDown1 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(30px) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes fallDown2 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(-20px) rotate(-270deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes fallDown3 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(15px) rotate(180deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes fallDown4 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(-25px) rotate(450deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes fallDown5 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(40px) rotate(-180deg); 
+    opacity: 0;
+  }
+}
+
+@keyframes fallDown6 {
+  0% { 
+    transform: translateY(-200px) translateX(0px) rotate(0deg); 
+    opacity: 0;
+  }
+  10% { 
+    opacity: 0.8;
+  }
+  90% { 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(calc(100vh + 200px)) translateX(-10px) rotate(270deg); 
+    opacity: 0;
+  }
+}
+
+.furniture-1 {
+  width: 150px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 20%;
+  animation: fallDown1 8s linear infinite;
+  animation-delay: 0s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+.furniture-2 {
+  width: 150px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 60%;
+  animation: fallDown2 10s linear infinite;
+  animation-delay: 2s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+/* Add a third furniture piece for more rainfall effect */
+.furniture-3 {
+  width: 150px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 40%;
+  animation: fallDown3 12s linear infinite;
+  animation-delay: 4s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+/* Add bed furniture */
+.furniture-4 {
+  width: 160px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 10%;
+  animation: fallDown4 9s linear infinite;
+  animation-delay: 1s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+/* Add plant furniture */
+.furniture-5 {
+  width: 120px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 75%;
+  animation: fallDown5 11s linear infinite;
+  animation-delay: 3s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+/* Add table furniture */
+.furniture-6 {
+  width: 140px;
+  position: absolute;
+  opacity: 0;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  left: 30%;
+  animation: fallDown6 13s linear infinite;
+  animation-delay: 5.5s;
+  filter: sepia(30%) saturate(1.3) hue-rotate(15deg) drop-shadow(0 4px 8px var(--soft-shadow));
+}
+
+.logo {
+  font-family: 'PixelifySans', sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  z-index: 2;
+  color: var(--dark-chocolate);
+  text-shadow: 3px 3px 6px var(--soft-shadow), 1px 1px 0 var(--warm-white);
+  background: linear-gradient(135deg, var(--dark-chocolate) 0%, var(--golden-brown) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.game-title {
+  font-family: 'PixelifySans', sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--dark-chocolate);
+  margin-bottom: 1.5rem;
+  z-index: 2;
+  text-shadow: 2px 2px 4px var(--soft-shadow), 2px 2px 0 var(--warm-white);
+  letter-spacing: 1px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+.start-button {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--dusty-rose) 100%);
+  color: var(--warm-white);
+  border: 3px solid var(--golden-brown);
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'PixelifySans', sans-serif;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  box-shadow: 0 6px 16px var(--soft-shadow);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.start-button:hover::before {
+  left: 100%;
+}
+
+.start-button:hover {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--terracotta) 100%);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 24px var(--hover-shadow);
+  border-color: var(--dark-chocolate);
+}
+
+.start-button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px var(--soft-shadow);
+}
+
+.how-to-play-button {
+  background: linear-gradient(135deg, var(--mauve-pink) 0%, var(--dusty-rose) 100%);
+  color: var(--warm-white);
+  border: 2px solid var(--golden-brown);
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'PixelifySans', sans-serif;
+  border-radius: 15px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--soft-shadow);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.how-to-play-button:hover {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--mauve-pink) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--hover-shadow);
+  border-color: var(--dark-chocolate);
+}
+
+.how-to-play-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--soft-shadow);
+}
+
+/* Modal styling with vintage colors */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(74, 26, 22, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+  padding: 2.5rem;
+  border-radius: 24px;
+  max-width: 450px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 20px 40px var(--hover-shadow);
+  border: 3px solid var(--golden-brown);
+  font-family: 'PixelifySans', sans-serif;
+}
+
+.modal-content h2 {
+  color: var(--dark-chocolate);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 2px var(--soft-shadow);
+}
+
+.modal-content p {
+  color: var(--golden-brown);
+  font-weight: 500;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.close-button {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, var(--mauve-pink) 0%, var(--dusty-rose) 100%);
+  color: var(--warm-white);
+  border: 2px solid var(--golden-brown);
+  padding: 0.8rem 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: 'PixelifySans', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--soft-shadow);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.close-button:hover {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--mauve-pink) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--hover-shadow);
+  border-color: var(--dark-chocolate);
+}
+
+.close-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--soft-shadow);
+}

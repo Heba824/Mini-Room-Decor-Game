@@ -1,0 +1,460 @@
+/* Vintage Color Palette Room Decorator Styles */
+
+/* Color Variables */
+:root {
+  --cream: #FCF5E0;
+  --warm-orange: #F7AE5B;
+  --terracotta: #E09464;
+  --dusty-rose: #DE8478;
+  --mauve-pink: #C97E83;
+  --golden-brown: #B8773A;
+  --dark-chocolate: #4A1A16;
+  --warm-white: #FFF8F0;
+  --soft-shadow: rgba(74, 26, 22, 0.15);
+  --hover-shadow: rgba(74, 26, 22, 0.25);
+}
+
+/* Main container styling */
+.room-canvas-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, var(--cream) 0%, #F5EDD8 100%);
+  font-family: "PixelifySans", monospace, sans-serif;
+}
+
+/* Container for the room canvas */
+.room-canvas-container {
+  width: 912px;
+  height: 656px;
+  margin: auto 0;
+  margin-left: 2rem;
+  background: var(--warm-white);
+  box-shadow: 0 8px 24px var(--soft-shadow);
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  border: 3px solid var(--terracotta);
+  transition: all 0.3s ease;
+}
+
+.room-canvas-container:hover {
+  box-shadow: 0 12px 32px var(--hover-shadow);
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--mauve-pink) 0%, var(--dusty-rose) 100%);
+  box-shadow: -6px 0 20px var(--soft-shadow);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: "PixelifySans", monospace, sans-serif;
+  border-left: 4px solid var(--golden-brown);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-close-btn {
+  display: none; /* Hide the X button since toggle arrow is available */
+}
+
+/* Categories */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-family: "PixelifySans", monospace, sans-serif;
+  font-weight: 600;
+  background: var(--warm-white);
+  color: var(--dark-chocolate);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px var(--soft-shadow);
+}
+
+.category-item:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--hover-shadow);
+  border-color: var(--warm-orange);
+}
+
+.category-item.selected {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--terracotta) 100%);
+  color: var(--warm-white);
+  border-color: var(--golden-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--hover-shadow);
+}
+
+.category-icon {
+  width: 45px;
+  height: 45px;
+  image-rendering: pixelated;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--soft-shadow);
+}
+
+/* Furniture list */
+.furniture-list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.furniture-list h3 {
+  font-family: "PixelifySans", monospace, sans-serif;
+  font-weight: 700;
+  color: var(--dark-chocolate);
+  margin-bottom: 1rem;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.furniture-item {
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--golden-brown);
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+  box-shadow: 0 6px 16px var(--soft-shadow);
+  transition: all 0.3s ease;
+}
+
+.furniture-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px var(--hover-shadow);
+  border-color: var(--warm-orange);
+}
+
+.furniture-drag-name {
+  cursor: grab;
+  user-select: none;
+  padding: 0.75rem;
+  border: 2px solid var(--terracotta);
+  border-radius: 12px;
+  background: var(--warm-white);
+  font-weight: 600;
+  font-family: "PixelifySans", monospace, sans-serif;
+  color: var(--dark-chocolate);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--soft-shadow);
+}
+
+.furniture-drag-name:hover {
+  background: var(--cream);
+  border-color: var(--warm-orange);
+  transform: scale(1.02);
+}
+
+.furniture-drag-name:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.furniture-item > div {
+  font-family: "PixelifySans", monospace, sans-serif;
+  color: var(--dark-chocolate);
+  font-weight: 600;
+}
+
+.color-picker {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 3px solid var(--warm-white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px var(--soft-shadow);
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px var(--hover-shadow);
+}
+
+.color-btn.selected {
+  border-color: var(--golden-brown);
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px var(--warm-orange);
+}
+
+/* Top left buttons */
+.top-left-buttons {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1100;
+}
+
+.control-btn {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--dusty-rose) 100%);
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: "PixelifySans", monospace, sans-serif;
+  transition: all 0.3s ease;
+  color: var(--warm-white);
+  font-size: 14px;
+  border: 2px solid var(--golden-brown);
+  box-shadow: 0 4px 12px var(--soft-shadow);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn:hover {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--terracotta) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--hover-shadow);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--soft-shadow);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--golden-brown) 100%);
+  border: none;
+  color: var(--warm-white);
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 1101;
+  user-select: none;
+  font-family: "PixelifySans", monospace, sans-serif;
+  font-size: 16px;
+  border: 2px solid var(--dark-chocolate);
+  box-shadow: 0 4px 12px var(--soft-shadow);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background: linear-gradient(135deg, var(--terracotta) 0%, var(--mauve-pink) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--hover-shadow);
+}
+
+.sidebar-toggle-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px var(--soft-shadow);
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--cream);
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--golden-brown);
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-chocolate);
+}
+
+.furniture-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.furniture-list::-webkit-scrollbar-track {
+  background: var(--cream);
+  border-radius: 3px;
+}
+
+.furniture-list::-webkit-scrollbar-thumb {
+  background: var(--golden-brown);
+  border-radius: 3px;
+}
+
+.furniture-list::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-chocolate);
+}
+
+/* Enhanced furniture canvas styling */
+.room-canvas-stage {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.room-canvas-stage[style*="solid"] {
+  border: 3px solid var(--warm-orange) !important;
+  box-shadow: 0 0 20px var(--hover-shadow);
+}
+
+.room-canvas-stage[style*="dashed"] {
+  border: 3px dashed var(--terracotta) !important;
+}
+
+/* Room Color Picker */
+.room-color-picker {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+  border: 3px solid var(--golden-brown);
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: 0 6px 16px var(--soft-shadow);
+  z-index: 1050;
+  font-family: "PixelifySans", monospace, sans-serif;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.room-color-picker:hover {
+  box-shadow: 0 8px 20px var(--hover-shadow);
+}
+
+.room-color-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--dark-chocolate);
+  font-weight: 600;
+  font-size: 14px;
+  font-family: "PixelifySans", monospace, sans-serif;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.room-color-header:hover {
+  background: rgba(247, 174, 91, 0.1);
+}
+
+.room-color-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  color: var(--golden-brown);
+  font-weight: 700;
+}
+
+.room-color-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.room-color-options {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.5rem 1rem 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.room-color-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 3px solid var(--warm-white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px var(--soft-shadow);
+  position: relative;
+}
+
+.room-color-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px var(--hover-shadow);
+}
+
+.room-color-btn.selected {
+  border-color: var(--golden-brown);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--warm-orange), 0 4px 12px var(--hover-shadow);
+}
+
+.room-color-btn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.room-color-btn.selected::after {
+  border-color: var(--dark-chocolate);
+}
+
+/* Debug info styling */
+div[style*="rgba(0,0,0,0.7)"] {
+  background: linear-gradient(135deg, var(--dark-chocolate) 0%, var(--golden-brown) 100%) !important;
+  color: var(--warm-white) !important;
+  border: 1px solid var(--terracotta);
+  font-family: "PixelifySans", monospace, sans-serif !important;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
